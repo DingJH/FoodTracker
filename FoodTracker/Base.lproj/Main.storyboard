@@ -38,6 +38,9 @@
                                         <rect key="frame" x="0.0" y="74" width="151" height="30"/>
                                         <animations/>
                                         <state key="normal" title="Set Default Label Text"/>
+                                        <connections>
+                                            <action selector="setDefaultLabelText:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QGZ-Fp-kj3"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <animations/>
@@ -55,6 +58,10 @@
                             <constraint firstAttribute="trailingMargin" secondItem="zUi-rZ-uA9" secondAttribute="trailing" id="YuY-z6-q2A"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="mealNameLabel" destination="qAy-WX-MlY" id="VU3-U6-S1j"/>
+                        <outlet property="nameTextField" destination="PXm-gH-a7z" id="sEa-i3-ebu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
