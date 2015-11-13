@@ -8,17 +8,19 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITextFieldDelegate {
+class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     //MARK: Properties
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var mealNameLabel: UILabel!
+    @IBOutlet weak var photoImageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         //Handle the text field's user input through delegate callbacks.
         nameTextField.delegate = self
+        
         
         
         // Do any additional setup after loading the view, typically from a nib.
@@ -39,8 +41,38 @@ class ViewController: UIViewController, UITextFieldDelegate {
         mealNameLabel.text = textField.text
     }
     
+    //MARK: UIImagePickerControllerDelegate
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        //Dismiss the picker if the user canceled
+        dismissViewControllerAnimated(true, completion: nil )
+    }
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        //The info dictionary contains multiple representations of the image, and this user the original.
+        let selectedImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+    
+        //Set photoImageView to display the seleceted image.
+        photoImageView.image = selectedImage
+        
+        //Dismiss the picker
+        dismissViewControllerAnimated(true, completion: nil )
+    }
     
     //MARK: Action
+    @IBAction func selectImageFromPhotoLibrary(sender: UITapGestureRecognizer) {
+        
+        //Hide the keyboard.
+        nameTextField.resignFirstResponder()
+        
+        //UIImagePickerController that lets a uesr pick media from their photo library.
+        let imagePickerController = UIImagePickerController()
+        //Only allow photo to be picked, not taken.
+        imagePickerController.sourceType = .PhotoLibrary
+        //Make sure ViewController is notified when the uesr picks an image.
+        imagePickerController.delegate = self
+        
+        presentViewController(imagePickerController, animated: true, completion: nil )
+        
+    }
     @IBAction func setDefaultLabelText(sender: UIButton) {
         
         mealNameLabel.text = "Default Text"
