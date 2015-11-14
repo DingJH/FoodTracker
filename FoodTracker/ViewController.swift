@@ -14,6 +14,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerContro
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var mealNameLabel: UILabel!
     @IBOutlet weak var photoImageView: UIImageView!
+    @IBOutlet weak var ratingControl: RatingControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +32,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerContro
         // Dispose of any resources that can be recreated.
     }
 
+    //------------------------------------
     //MARK: UITextFieldDelegate
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         //Hide the keyboard.
@@ -41,6 +43,8 @@ class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerContro
         mealNameLabel.text = textField.text
     }
     
+    
+    //-------------------------------------
     //MARK: UIImagePickerControllerDelegate
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         //Dismiss the picker if the user canceled
@@ -57,6 +61,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerContro
         dismissViewControllerAnimated(true, completion: nil )
     }
     
+    //--------------------------------------
     //MARK: Action
     @IBAction func selectImageFromPhotoLibrary(sender: UITapGestureRecognizer) {
         
@@ -73,12 +78,6 @@ class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerContro
         presentViewController(imagePickerController, animated: true, completion: nil )
         
     }
-    @IBAction func setDefaultLabelText(sender: UIButton) {
-        
-        mealNameLabel.text = "Default Text"
-        
-    }
-    
 
 }
 
